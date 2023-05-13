@@ -21,6 +21,6 @@ you will see the exif data of that file.
 ### Bindings to be written
 
 - [x] Get exif data.
-- [ ] Set / Update exif data.
+- [x] Set / Update exif data.
 - [ ] Extract cover image.
 - [ ] many more features coming soon...
