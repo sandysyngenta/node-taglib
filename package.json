@@ -10,8 +10,8 @@
     "rebuild:module": "node-gyp rebuild",
     "clean:module": "node-gyp clean",
     "clean:taglib": "cd taglib-1.13 && make clean && rm -r _install",
-    "start": "node .",
-    "build": "npm run build:taglib && npm run build:module"
+    "build": "npm run build:taglib && npm run build:module",
+    "example": "node ./example/index.js"
   },
   "keywords": [],
   "author": "",

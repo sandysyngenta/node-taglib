@@ -1,21 +1,55 @@
-const nodeTaglib = require("bindings")("node_taglib");
+const node_taglib = require("bindings")("node_taglib");
 
-const demoFile = "my_song.mp3";
+/**
+ * This method extracts the exif metadata from the given file.
+ * @param {string} filePath path of the media file.
+ * @returns {{
+ *      album: string,
+ *      artist: string,
+ *      genre: string,
+ *      title: string,
+ *      comment: string,
+ *      track: string,
+ *      year: string,
+ * }}
+ */
+function getExifData(filePath) {
+  return node_taglib.getExifData(filePath);
+}
 
-const currentExif = nodeTaglib.getExifData(demoFile);
+/**
+ * This method update / create the exif data on the given file.
+ * @param {string} filePath path of the media file.
+ * @param {{
+ *      album: string | undefined,
+ *      artist: string  | undefined,
+ *      genre: string  | undefined,
+ *      title: string  | undefined,
+ *      comment: string  | undefined,
+ *      track: string  | undefined,
+ *      year: string  | undefined,
+ * }} exifObject exif metadata keys to update.
+ * @returns {boolean}
+ */
+function setExifData(filePath, exifObject) {
+  return node_taglib.setExifData(filePath, exifObject);
+}
 
-console.log("current exif: ", currentExif);
+/**
+ * This method extracts the cover art image if exists from the given file,
+ * and saves it to the destination.
+ * @param {string} filePath path of the media file.
+ * @param {string} destinationFile destination path to save the cover art.
+ * @returns {boolean}
+ */
+function extractCoverArt(filePath, destinationFile) {
+  return node_taglib.extractCoverArt(filePath, destinationFile);
+}
 
-console.log("updating...");
+const NodeTagLib = {
+  getExifData,
+  setExifData,
+  extractCoverArt,
+};
 
-nodeTaglib.setExifData(demoFile, {
-    artist: "sandeep",
-    album: "sandy's album",
-    year: 2002
-});
-
-const updatedExif = nodeTaglib.getExifData(demoFile);
-
-console.log("updated exif: ", updatedExif);
-
-nodeTaglib.extractCoverArt(demoFile, "cover_art.jpeg");
+module.exports = NodeTagLib;

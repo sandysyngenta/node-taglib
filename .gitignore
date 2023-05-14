@@ -2,4 +2,5 @@ build
 _install
 # .vscode
 node_modules
-*.mp3
+# *.mp3
+_example
