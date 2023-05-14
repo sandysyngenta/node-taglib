@@ -9,8 +9,9 @@
             "cflags!": ["-fno-exceptions"],
             "cflags_cc!": ["-fno-exceptions"],
             "sources": [
-                "./src/cpp/tag.cpp",
-                "./src/cpp/index.cpp"
+                "./src/binding.cc",
+                "./src/sources/exif.cc",
+                "./src/sources/cover.cc",
             ],
             "include_dirs": [
                 "<!@(node -p \"require('node-addon-api').include\")",

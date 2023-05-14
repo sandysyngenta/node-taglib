@@ -22,5 +22,5 @@ you will see the exif data of that file.
 
 - [x] Get exif data.
 - [x] Set / Update exif data.
-- [ ] Extract cover image.
+- [x] Extract cover image.
 - [ ] many more features coming soon...

@@ -11,9 +11,11 @@ console.log("updating...");
 nodeTaglib.setExifData(demoFile, {
     artist: "sandeep",
     album: "sandy's album",
-    year: "1999"
+    year: 2002
 });
 
 const updatedExif = nodeTaglib.getExifData(demoFile);
 
 console.log("updated exif: ", updatedExif);
+
+nodeTaglib.extractCoverArt(demoFile, "cover_art.jpeg");
