@@ -10,8 +10,11 @@ Napi::Object init(Napi::Env env, Napi::Object exports)
         "setExifData",
         Napi::Function::New(env, Exif::set_exif_data));
     exports.Set(
-        "extractCoverArt",
-        Napi::Function::New(env, Cover::extract_cover_art));
+        "saveCoverArt",
+        Napi::Function::New(env, Cover::save_cover_art));
+    exports.Set(
+        "getCoverArt",
+        Napi::Function::New(env, Cover::get_cover_art));
     return exports;
 }
 

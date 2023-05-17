@@ -43,12 +43,18 @@ if(success)
 ------------
 ------------
 ------------
-// How to extract the cover Art Image from the file.
-// This will create a new file & save the extracted cover image.
-const success = NodeTagLib.extractCoverArt("path_to_audio.mp3", "new_cover_art.jpeg");
+// How to save the cover Art Image from the file.
+// This will create a new file & save cover image to the destination.
+const success = NodeTagLib.saveCoverArt("path_to_audio.mp3", "new_cover_art.jpeg");
 
 if(success)
     console.log("conver image extracted...");
+
+------------
+------------
+------------
+// Get the cover image data (UInt8Array)
+const buffer = NodeTagLib.getCoverArt("path_to_audio.mp3");
 
 ```
 
@@ -59,5 +65,6 @@ if(success)
 
 - [x] Get exif data.
 - [x] Set / Update exif data.
-- [x] Extract cover image.
+- [x] Save cover image.
+- [x] Get cover image data (bytes).
 - [ ] many more features coming soon...

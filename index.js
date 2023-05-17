@@ -42,14 +42,24 @@ function setExifData(filePath, exifObject) {
  * @param {string} destinationFile destination path to save the cover art.
  * @returns {boolean}
  */
-function extractCoverArt(filePath, destinationFile) {
-  return node_taglib.extractCoverArt(filePath, destinationFile);
+function saveCoverArt(filePath, destinationFile) {
+  return node_taglib.saveCoverArt(filePath, destinationFile);
+}
+
+/**
+ * This method returns the cover art image data bytes (uint8array)
+ * @param {string} filePath path of the media file.
+ * @returns {Uint8Array}
+ */
+function getCoverArt(filePath) {
+  return node_taglib.getCoverArt(filePath);
 }
 
 const NodeTagLib = {
   getExifData,
   setExifData,
-  extractCoverArt,
+  saveCoverArt,
+  getCoverArt
 };
 
 module.exports = NodeTagLib;

@@ -11,7 +11,7 @@
     "clean:module": "node-gyp clean",
     "clean:taglib": "cd taglib-1.13 && make clean && rm -r _install",
     "build": "npm run build:taglib && npm run build:module",
-    "example": "node ./example/index.js"
+    "example": "node ./_example/index.js"
   },
   "keywords": [],
   "author": "",

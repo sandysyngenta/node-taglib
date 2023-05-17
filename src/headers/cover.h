@@ -13,12 +13,26 @@
 
 using namespace std;
 
+struct Cover_Info
+{
+    unsigned long size = 0;
+    char *cover_art_data = nullptr;
+
+    // ~Cover_Info() {
+    //     if(cover_art_data != nullptr)
+    //         delete cover_art_data;
+    // }
+};
+
 class Cover
 {
 private:
-    static bool __extract_cover_art(string file_path, string cover_art_dest);
+    // this method is not exposed to js world directly.
+    static void __get_cover_data_byte(string file_path, Cover_Info* cover_info);
+    static bool __save_cover_art(string file_path, string cover_art_dest);
     inline static const char *picture_id = "APIC";
 
 public:
-    static Napi::Boolean extract_cover_art(const Napi::CallbackInfo &info);
+    static Napi::Boolean save_cover_art(const Napi::CallbackInfo &info);
+    static Napi::Buffer<uint8_t> get_cover_art(const Napi::CallbackInfo &info);
 };
