@@ -49,10 +49,11 @@ function saveCoverArt(filePath, destinationFile) {
 /**
  * This method returns the cover art image data bytes (uint8array)
  * @param {string} filePath path of the media file.
- * @returns {Uint8Array}
+ * @param {(buffer: Uint8Array) => void} cb callback function which will receive the buffer data.
+ * @returns {void}
  */
-function getCoverArt(filePath) {
-  return node_taglib.getCoverArt(filePath);
+function getCoverArt(filePath, cb) {
+  node_taglib.getCoverArt(filePath, cb);
 }
 
 const NodeTagLib = {

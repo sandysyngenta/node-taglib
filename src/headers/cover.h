@@ -18,10 +18,10 @@ struct Cover_Info
     unsigned long size = 0;
     char *cover_art_data = nullptr;
 
-    // ~Cover_Info() {
-    //     if(cover_art_data != nullptr)
-    //         delete cover_art_data;
-    // }
+    ~Cover_Info() {
+        if(cover_art_data != nullptr)
+            delete cover_art_data;
+    }
 };
 
 class Cover
@@ -34,5 +34,5 @@ private:
 
 public:
     static Napi::Boolean save_cover_art(const Napi::CallbackInfo &info);
-    static Napi::Buffer<uint8_t> get_cover_art(const Napi::CallbackInfo &info);
+    static void get_cover_art(const Napi::CallbackInfo &info);
 };

@@ -54,7 +54,9 @@ if(success)
 ------------
 ------------
 // Get the cover image data (UInt8Array)
-const buffer = NodeTagLib.getCoverArt("path_to_audio.mp3");
+NodeTagLib.getCoverArt("path_to_audio.mp3", (buffer) => {
+    console.log(buffer);
+});
 
 ```
 

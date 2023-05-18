@@ -56,16 +56,20 @@ Napi::Boolean Cover::save_cover_art(const Napi::CallbackInfo &info)
     return Napi::Boolean::New(env, Cover::__save_cover_art(file_path, cover_art_dest));
 }
 
-Napi::Buffer<uint8_t> Cover::get_cover_art(const Napi::CallbackInfo &info)
+void Cover::get_cover_art(const Napi::CallbackInfo &info)
 {
     Napi::Env env = info.Env();
-    if (info.Length() < 1)
-        Napi::TypeError::New(env, "Err: node-taglib getCoverArt expects 1 argument.").ThrowAsJavaScriptException();
+    if (info.Length() < 2)
+        Napi::TypeError::New(env, "Err: node-taglib getCoverArt expects 2 argument.").ThrowAsJavaScriptException();
     if (!info[0].IsString())
-        Napi::TypeError::New(env, "Err: node-taglib getCoverArt expects argument of type string.").ThrowAsJavaScriptException();
+        Napi::TypeError::New(env, "Err: node-taglib getCoverArt expects 1st argument of type string.").ThrowAsJavaScriptException();
+    if (!info[1].IsFunction())
+        Napi::TypeError::New(env, "Err: node-taglib getCoverArt expects 2nd argument of type function.").ThrowAsJavaScriptException();
     string file_path = info[0].ToString();
+    Napi::Function callback = info[1].As<Napi::Function>();
     Cover_Info cover_info;
     __get_cover_data_byte(file_path, &cover_info);
     uint8_t *buffer = (uint8_t *) cover_info.cover_art_data;
-    return Napi::Buffer<uint8_t>::New(env, buffer, cover_info.size);
+    const auto uint8_buffer = Napi::Buffer<uint8_t>::New(env, buffer, cover_info.size);
+    callback.Call({ uint8_buffer });
 }
