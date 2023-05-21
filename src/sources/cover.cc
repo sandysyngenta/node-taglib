@@ -18,6 +18,7 @@ void Cover::__get_cover_data_byte(string file_path, Cover_Info *cover_info)
                 {
                     if (pic_frame->picture().size() > 0)
                     {
+                        cover_info->mime_type = pic_frame->mimeType().to8Bit();
                         cover_info->size = pic_frame->picture().size();
                         cover_info->cover_art_data = new char[cover_info->size]();
                         memcpy(cover_info->cover_art_data, pic_frame->picture().data(), cover_info->size);
@@ -40,6 +41,18 @@ bool Cover::__save_cover_art(string file_path, string cover_art_dest)
         fclose(file);
     }
     return has_cover_art;
+}
+
+bool Cover::__set_new_cover_art(string file_path, string cover_file_path)
+{
+    //TODO: implement.
+    return false;
+}
+
+bool Cover::__set_new_cover_art(string file_path, char* data, unsigned long size)
+{
+    //TODO: implement.
+    return false;
 }
 
 Napi::Boolean Cover::save_cover_art(const Napi::CallbackInfo &info)
@@ -72,4 +85,11 @@ void Cover::get_cover_art(const Napi::CallbackInfo &info)
     uint8_t *buffer = (uint8_t *) cover_info.cover_art_data;
     const auto uint8_buffer = Napi::Buffer<uint8_t>::New(env, buffer, cover_info.size);
     callback.Call({ uint8_buffer });
+}
+
+Napi::Boolean Cover::set_new_cover_art(const Napi::CallbackInfo &info)
+{
+    Napi::Env env = info.Env();
+    //TODO: implement.
+    return Napi::Boolean::New(env, false);
 }
