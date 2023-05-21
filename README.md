@@ -23,7 +23,11 @@ console.log(exifData);
     genre: "string",
     comment: "string",
     track: "string",
-    year: "string"
+    year: "string",
+    bitrate: "string",,
+    channels: "string"
+    sampleRate: "string",
+    duration: "string"
 }
 */
 
@@ -59,6 +63,10 @@ NodeTagLib.getCoverArt("path_to_audio.mp3", (buffer) => {
 });
 
 ```
+
+``bitrate`` is in ``kb/s``
+``sampleRate`` is in ``Hz``
+``duration`` is in ``seconds``
 
 >**Note**
 >Don't worry about file & folder structure for now. All will be fixed in near future.

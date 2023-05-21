@@ -11,6 +11,10 @@ const node_taglib = require("bindings")("node_taglib");
  *      comment: string,
  *      track: string,
  *      year: string,
+ *      bitrate: string,
+ *      channels: string,
+ *      sampleRate: string,
+ *      duration: string
  * }}
  */
 function getExifData(filePath) {
