@@ -23,6 +23,7 @@ map<string, string> Exif::__get_exif_data(string file_path)
 {
     std::map<string, string> map;
     TagLib::FileRef f = TagLib::FileRef(file_path.c_str());
+    auto audio_props = f.audioProperties();
     auto tag = f.tag();
     auto album = tag->album();
     auto artist = tag->artist();
@@ -36,6 +37,10 @@ map<string, string> Exif::__get_exif_data(string file_path)
     map["title"] = title.isNull() ? "" : title.to8Bit();
     map["track"] = to_string(tag->track());
     map["year"] = to_string(tag->year());
+    map["bitrate"] = audio_props ? to_string(audio_props->bitrate()) : "";
+    map["channels"] = audio_props ? to_string(audio_props->channels()) : "";
+    map["sampleRate"] = audio_props ? to_string(audio_props->sampleRate()) : "";
+    map["duration"] = audio_props ? to_string(audio_props->length()) : "";
     return map;
 }
 
