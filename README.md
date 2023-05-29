@@ -86,6 +86,9 @@ NodeTagLib.setNewCoverArt("path_to_audio.mp3", "image/jpeg", "path_to_image.jpg"
 
 5. ``setNewCoverArt`` this method is used to update the the cover art image of music file. It accepts 3 arguments, 1st the music ``file-path``, 2nd one is ``mime-type`` (image/png, image/jpeg) & the 3rd one is the ``image-path`` which we want to set as cover image. It returns true / false.
 
+#### How to build the project
+just run ``npm run build``.
+
 ### Bindings to be written
 
 - [x] Get exif data.
