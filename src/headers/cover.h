@@ -1,4 +1,8 @@
+#ifndef TAG_COVER_H
+#define TAG_COVER_H
+
 #include <iostream>
+#include <sys/stat.h>
 #include <cstdlib>
 #include <napi.h>
 #include <taglib/tag.h>
@@ -20,8 +24,9 @@ struct Cover_Info
     string mime_type = "";
     char *cover_art_data = nullptr;
 
-    ~Cover_Info() {
-        if(cover_art_data != nullptr)
+    ~Cover_Info()
+    {
+        if (cover_art_data != nullptr)
             delete cover_art_data;
     }
 };
@@ -30,10 +35,10 @@ class Cover
 {
 private:
     // this method is not exposed to js world directly.
-    static void __get_cover_data_byte(string file_path, Cover_Info* cover_info);
+    static void __get_cover_data_byte(string file_path, Cover_Info *cover_info);
     static bool __save_cover_art(string file_path, string cover_art_dest);
-    static bool __set_new_cover_art(string file_path, string cover_file_path);
-    static bool __set_new_cover_art(string file_path, char* data, unsigned long size);
+    static bool __set_new_cover_art(string file_path, string mime_type, string cover_file_path);
+    static bool __set_new_cover_art(string file_path, string mime_type, char *data, unsigned long size);
     inline static const char *picture_id = "APIC";
 
 public:
@@ -41,3 +46,5 @@ public:
     static Napi::Boolean set_new_cover_art(const Napi::CallbackInfo &info);
     static void get_cover_art(const Napi::CallbackInfo &info);
 };
+
+#endif

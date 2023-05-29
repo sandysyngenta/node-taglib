@@ -57,13 +57,19 @@ bool Exif::__set_exif_data(string file_path, map<string, string> &new_exif)
 
 // public methods.
 // export this function to js-side.
-Napi::Object Exif::get_exif_data(const Napi::CallbackInfo &info)
+Napi::Value Exif::get_exif_data(const Napi::CallbackInfo &info)
 {
     Napi::Env env = info.Env();
     if (info.Length() <= 0)
-        Napi::TypeError::New(env, "Err: node-taglib getExifData expects one argument as filepath.").ThrowAsJavaScriptException();
+    {
+        Napi::Error::New(env, "node-taglib - getExifData: expects one argument as filepath.").ThrowAsJavaScriptException();
+        return env.Null();
+    }
     if (!info[0].IsString())
-        Napi::TypeError::New(env, "Err: node-taglib: getExifData expects argument of type string.").ThrowAsJavaScriptException();
+    {
+        Napi::Error::New(env, "node-taglib - getExifData: expects argument of type string.").ThrowAsJavaScriptException();
+        return env.Null();
+    }
     string file_path = info[0].ToString();
     auto map = Exif::__get_exif_data(file_path);
     Napi::Object ret_obj = Napi::Object::New(env);
@@ -78,11 +84,20 @@ Napi::Boolean Exif::set_exif_data(const Napi::CallbackInfo &info)
 {
     Napi::Env env = info.Env();
     if (info.Length() < 2)
-        Napi::TypeError::New(env, "Err: node-taglib setExifData expects two argument.").ThrowAsJavaScriptException();
+    {
+        Napi::Error::New(env, "node-taglib - setExifData: expects two argument.").ThrowAsJavaScriptException();
+        return Napi::Boolean::New(env, false);
+    }
     if (!info[0].IsString())
-        Napi::TypeError::New(env, "Err: node-taglib: setExifData expects 1st argument of type string.").ThrowAsJavaScriptException();
+    {
+        Napi::Error::New(env, "node-taglib - setExifData: expects 1st argument of type string.").ThrowAsJavaScriptException();
+        return Napi::Boolean::New(env, false);
+    }
     if (!info[1].IsObject())
-        Napi::TypeError::New(env, "Err: node-taglib: setExifData expects 2nd argument of type object.").ThrowAsJavaScriptException();
+    {
+        Napi::Error::New(env, "node-taglib - setExifData: expects 2nd argument of type object.").ThrowAsJavaScriptException();
+        return Napi::Boolean::New(env, false);
+    }
     string file_path = info[0].ToString();
     auto new_exif_data = info[1].ToObject();
     string exif_keys[] = {"album", "artist", "comment", "genre", "title", "track", "year"};

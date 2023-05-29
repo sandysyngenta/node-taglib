@@ -60,11 +60,23 @@ function getCoverArt(filePath, cb) {
   node_taglib.getCoverArt(filePath, cb);
 }
 
+/**
+ * This method will set the new cover art to the given media file.
+ * @param {string} filePath path of the media file.
+ * @param {"image/png" | "image/jpeg"} mimeType mime type of the new cover art.
+ * @param {string | Buffer} newCoverArt new cover art image file path or content (buffer).
+ * @returns {boolean}
+ */
+function setNewCoverArt(filePath, mimeType, newCoverArt) {
+  return node_taglib.setNewCoverArt(filePath, mimeType, newCoverArt);
+}
+
 const NodeTagLib = {
   getExifData,
   setExifData,
   saveCoverArt,
-  getCoverArt
+  getCoverArt,
+  setNewCoverArt
 };
 
 module.exports = NodeTagLib;

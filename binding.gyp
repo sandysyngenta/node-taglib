@@ -9,9 +9,9 @@
             "cflags!": ["-fno-exceptions"],
             "cflags_cc!": ["-fno-exceptions"],
             "sources": [
-                "./src/binding.cc",
-                "./src/sources/exif.cc",
-                "./src/sources/cover.cc",
+                "./src/binding.cpp",
+                "./src/sources/exif.cpp",
+                "./src/sources/cover.cpp",
             ],
             "include_dirs": [
                 "<!@(node -p \"require('node-addon-api').include\")",

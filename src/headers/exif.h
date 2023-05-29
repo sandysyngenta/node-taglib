@@ -1,3 +1,6 @@
+#ifndef TAG_EXIF_H
+#define TAG_EXIF_H
+
 #include <napi.h>
 #include <map>
 #include <string>
@@ -13,6 +16,8 @@ private:
     static void __set_exif(TagLib::Tag *tag, string key, string data);
 
 public:
-    static Napi::Object get_exif_data(const Napi::CallbackInfo &info);
+    static Napi::Value get_exif_data(const Napi::CallbackInfo &info);
     static Napi::Boolean set_exif_data(const Napi::CallbackInfo &info);
 };
+
+#endif

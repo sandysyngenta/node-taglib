@@ -15,6 +15,9 @@ Napi::Object init(Napi::Env env, Napi::Object exports)
     exports.Set(
         "getCoverArt",
         Napi::Function::New(env, Cover::get_cover_art));
+    exports.Set(
+        "setNewCoverArt",
+        Napi::Function::New(env, Cover::set_new_cover_art));
     return exports;
 }
 

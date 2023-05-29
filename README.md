@@ -77,5 +77,5 @@ NodeTagLib.getCoverArt("path_to_audio.mp3", (buffer) => {
 - [x] Set / Update exif data.
 - [x] Save cover image.
 - [x] Get cover image data (bytes).
-- [ ] Set cover image.
+- [x] Set cover image.
 - [ ] many more features coming soon...
