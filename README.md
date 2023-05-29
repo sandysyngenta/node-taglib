@@ -62,6 +62,12 @@ NodeTagLib.getCoverArt("path_to_audio.mp3", (buffer) => {
     console.log(buffer);
 });
 
+// Set new cover art image to music file
+// 1st argument is music file to which new cover image will be written.
+// 2nd argument is mime-type- image/jpeg or image/png
+// 3rd argument is the image file.
+NodeTagLib.setNewCoverArt("path_to_audio.mp3", "image/jpeg", "path_to_image.jpg");
+
 ```
 
 ``bitrate`` is in ``kb/s``
