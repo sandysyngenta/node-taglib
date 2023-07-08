@@ -4,3 +4,4 @@ _install
 node_modules
 # *.mp3
 _example
+.DS_Store
